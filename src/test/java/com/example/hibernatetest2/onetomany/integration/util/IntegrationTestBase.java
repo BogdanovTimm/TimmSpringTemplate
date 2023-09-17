@@ -16,8 +16,8 @@ import jakarta.transaction.Transactional;
 @SpringBootTest //(classes = CustomBeansForTest.class) //? Allows you to use custom Beans for tests that is defined in [CustomBeansForTests1]
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL) //? For Dependency Injection to work
 @Sql({ //? Path to custom sql scripts that will be runned every time every test class was started
-      "classpath:sql/data.sql", //? This file is in: %this_application%/src/test/resources/sql/createtables.sql
-      "classpath:sql/rows.sql"
+      "classpath:data.sql", //? This file is in: %this_application%/src/test/resources/sql/createtables.sql
+      "classpath:rows.sql"
 })
 /**
  * @WithMockUser (username = "test@gmail.com", //? It needs for tests to work with Spring-Security

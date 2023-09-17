@@ -54,7 +54,7 @@ public class Table1RepositoryIT extends IntegrationTestBase { //[ ] Don't forget
         Assertions.assertThat(rowFromTable1)
                   .isEqualTo(Table1.builder()
                                    .id(1L)
-                                   .name("acdc@gmail.com")
+                                   .name("metallica@gmail.com")
                                    .build());
         Assertions.assertThat(rowFromTable1.getMapOfTable2s()).isEmpty();
     }
@@ -65,17 +65,17 @@ public class Table1RepositoryIT extends IntegrationTestBase { //[ ] Don't forget
                            .name("bigben@gmail.com")
                            .build();
         table1.saveAndFlush(newRow);
-        var newRowFromDatabase = table1.findById(8L).get();
+        var newRowFromDatabase = table1.findById(7L).get();
         Assertions.assertThat(newRowFromDatabase)
                   .isEqualTo(Table1.builder()
-                                   .id(8L)
+                                   .id(7L)
                                    .name("bigben@gmail.com")
                                    .build());
     }
 
     @org.junit.jupiter.api.Test
     void delete() {
-        Assertions.assertThat(table1.deleteByName("acdc@gmail.com")).isEqualTo(1);
+        Assertions.assertThat(table1.deleteByName("metallica@gmail.com")).isEqualTo(1);
         Assertions.assertThat(table1.findById(1L).isEmpty()).isTrue();
     }
 
