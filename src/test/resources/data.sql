@@ -1,0 +1,21 @@
+
+DROP TABLE IF EXISTS table1;
+DROP TABLE IF EXISTS table2;
+DROP TABLE IF EXISTS table3;
+DROP TABLE IF EXISTS table3table4;
+CREATE TABLE IF NOT EXISTS table1 ( /*? One to Many */
+    id         BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name       VARCHAR (255) NOT NULL UNIQUE,
+    enumeration VARCHAR (255),
+    PRIMARY KEY (id)
+);
+
+
+
+CREATE TABLE IF NOT EXISTS table2 ( /*? Many to One */
+    id         BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name       VARCHAR (255) NOT NULL UNIQUE,
+    table1_id  BIGINT UNSIGNED,
+    FOREIGN KEY (table1_id) REFERENCES table1 (id),
+    PRIMARY KEY (id)
+);

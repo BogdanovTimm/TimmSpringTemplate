@@ -1,0 +1,8 @@
+spring:
+    datasource:
+        password: test #? Setting up Docker from Test-Containers dependency
+        username: test #? Setting up Docker from Test-Containers dependency
+    jpa:
+        properties:
+            hibernate:
+                ddl-auto: none #? See application.yaml
