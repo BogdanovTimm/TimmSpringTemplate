@@ -45,6 +45,10 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {// This mea
                                                    "/login/oauth2/code/google",
                                                    "/oauth2/authorization/google",
                                                    "/api/v1/manytomany",
+                                                   "/home.html",
+                                                   "/login.html",
+                                                   "/register.html",
+                                                   //"/",
                                                    // #
                                                    "/#/api/v1/user/new/password",
                                                    "/#/api/v1/user/login",

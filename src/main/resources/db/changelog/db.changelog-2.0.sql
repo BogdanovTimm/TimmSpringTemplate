@@ -29,4 +29,22 @@ VALUES ("Crack the Sky"     , 5        ),
        ("Blood Mountain"    , 5        )
 
 ;
---rollback DROP TABLE table2;
+--rollback DELETE FROM table2;
+
+
+
+--changeset bogdanovtim:3
+INSERT INTO events
+       (type                     , description                            ) /* Insert nothing into id_column */
+       /*------------------------|----------------------------------------*/
+VALUES ("LOGIN_ATTEMPT"          , "You tried to log in"                  ),
+       ("LOGIN_ATTEMPT_SUCCESS"  , "You tried to log in and you successed"),
+       ("LOGIN_ATTEMPT_FAILURE"  , "You tried to login  and you failed"   ),
+       ("PROFILE_UPDATE"         , "You updated your profile information" ),
+       ("PROFILE_PICTURE_UPDATE" , "You updated your profile picture"     ),
+       ("ROLE_UPDATE Mountain"   , "You updated your role and permissions"),
+       ("ACCOUNT_SETTINGS_UPDATE", "You updated your account settings"    ),
+       ("MFA_UPDATE"             , "You updated your MFA settings"        ),
+       ("PASSWORD_UPDATE"        , "You updated your password"            )
+;
+--rollback DELETE FROM events;

@@ -65,6 +65,9 @@ public class SecurityConfig {
                                                  "/api/v1/user/image/**",
                                                  "/api/v1/user/new/password/**",
                                                  "/api/v1/manytomany/**",
+                                                 "/home.html",
+                                                 "/login.html",
+                                                 "/register.html",
                                                  // #
                                                  "/#/api/v1/user/verify/password/**",
                                                  "/#/api/v1/user/login/**",
