@@ -5,4 +5,4 @@ spring:
     jpa:
         properties:
             hibernate:
-                ddl-auto: create-drop #? See application.yaml
+                ddl-auto: create #? See application.yaml

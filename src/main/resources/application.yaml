@@ -21,7 +21,7 @@ spring:
                       #? update      - checks whether already existing sql-tables are equal to defined java-classes and add new columns if needed, without deleting an existing ones
                       #? validate    - checks whether already existing sql-tables are equal to defined java-classes and throws an exception if they are not equal
                       #? none        - does nothing
-                      validate
+                      none #! We use validate, beause we use Liquibase to create all tables and to fulfill them.
         properties:
             hibernate:
                 globally_quoted_indentifiers: true
@@ -32,16 +32,48 @@ spring:
         init:
             mode: never
             continue-on-error: false
+    mail:
+        host: smtp.gmail.com
+        port: 587
+        username: bogdanovtimm@gmail.com
+        password: asdp ovdy nhpp ekig
+        properties:
+            mail:
+                smtp:
+                    writetimeout: 5000
+                    connectiontimeout: 5000
+                    timeout: 5000
+                    auth: true
+                    starttls:
+                        enable: true
+                        required: true
+    security:
+        oauth2:
+            client:
+                registration:
+                    #google:
+                     #   clientId: 683078134097-228jgon9bc7ud9qfqkm3gam1k5b75pf8.apps.googleusercontent.com # From google site
+                      #  clientSecret: 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 #? From google site
+                        #redirectUri: http://localhost/login/oauth2/code/google #? This code you need to paste into google in settings
+                        #scope: openid,email,profile  #? What to get from user's google account
+                    github:
+                        clientId: 232a580a0a38a147e720
+                        clientSecret: a9894bd0dff6138d0c1d10171a29ddb9bdf6f505
+                        redirectUri: http://localhost/login/oauth2/code/github #? This code you need to paste into github in settings
+                        #scope: openid,email,profile  #? What to get from user's github account
 
 
 
 
 
-#? Logging ---v
 logging:
     level:
         root: INFO #? Default logging level for all classes
     file: #? Duplicates all logs into some file
         name: backend.log
         path: /
-#? Logging ---^
+
+
+
+jwt:
+    secret: mysupercomplexsecret

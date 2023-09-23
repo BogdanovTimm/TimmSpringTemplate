@@ -6,10 +6,10 @@ import org.assertj.core.api.Assertions;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
-import com.example.hibernatetest2.onetomany.integration.util.IntegrationTestBase;
-import com.example.hibernatetest2.tables.onetomanytoone.entities.QTable1;
-import com.example.hibernatetest2.tables.onetomanytoone.entities.Table1;
-import com.example.hibernatetest2.tables.onetomanytoone.repositories.Table1Repository;
+import com.example.hibernatetest2.tables.onetomany.entities.QTable1;
+import com.example.hibernatetest2.tables.onetomany.entities.Table1;
+import com.example.hibernatetest2.tables.onetomany.repositories.Table1Repository;
+import com.example.hibernatetest2.util.IntegrationTestBase;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Predicate;
 

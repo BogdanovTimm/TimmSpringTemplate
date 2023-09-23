@@ -1,35 +1,18 @@
 package com.example.hibernatetest2;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import com.example.hibernatetest2.tables.onetomanytoone.repositories.Table1Repository;
-import com.example.hibernatetest2.tables.onetomanytoone.repositories.Table1RepositoryCustomQueryDslImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
 import lombok.extern.slf4j.Slf4j;
 
-
-// [v] Create a create function
-// [v] 1 to many
-// [v] many to 1
-// [v] many to many
-// [ ] 1 to 1
-// [v] Get row from more than 1 tables
-// [v] Create Resource level
-// [v] Integration Testing
-// [v] Unity Testing Post
-// [v] Docker Test Containers
-// [v] Liquibase
-// [ ] Authorization and authentication
-// [ ] Oauth2
-// [v] Validation
-// [v] Logs
-// [ ] N + 1 problem
-// [v] Actually, findByName must return Page
-// [v] QueryDsl
-// [ ] MySQL Table Indexing
-// [ ] Mappers
-// [ ] Service
-// [ ] Create Folders for OneToMany/ManyToOne, ManyToMany, Embedable
-// [ ] Create Folders for Spring Security
 
 @Slf4j
 @SpringBootApplication
@@ -37,24 +20,72 @@ public class Hibernatetest2Application {
 
     public static void main(String[] args) {
         var application = SpringApplication.run(Hibernatetest2Application.class, args);
-        var table1 = application.getBean("table1Repository", Table1Repository.class);
+        /* var table1 = application.getBean("table1Repository", Table1Repository.class);
+        var table2 = application.getBean("table2Repository", Table2Repository.class);
         //var table5 = application.getBean("table5Repository", Table5Repository.class);
         var table1Custom = application.getBean("table1RepositoryCustomQueryDslImpl",
-                                               Table1RepositoryCustomQueryDslImpl.class);
-        /**
-         * EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.baeldung.querydsl.intro");
-         * EntityManager em = emf.createEntityManager();
-         * JPAQueryFactory queryFactory = new JPAQueryFactory(JPQLTemplates.DEFAULT, em);
-         * queryFactory.selectFrom(QTable1.table1);
-         * var emptyMapOfPredicates = new HashMap<>();
-         * var mapOfPredicates = java.util.Map.of("KeyString1", "ValueString1");
-         * var predicate = QTable1.table1.name.like("t");
-         * predicate.or("null");
-         **/
-        //?-------------------------------------------------------------------------------------------------------------
-        log.info("Hi! Can you see this?");
-        log.warn("Hi! Can you see this?");
-        log.error("Hi! Can you see this?");
+                                               Table1RepositoryCustomQueryDslImpl.class); */
     }
+
+    //? Spring Security --v
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(12);
+    }
+
+
+
+    /**
+     * Sets:
+     * <ol>
+     * <li>from which websites our application can consume HTTP-Requests
+     * <li>which HTTP-Headers is allowed from websites that is allowed in 1.
+     */
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.setAllowedOrigins(List.of("http://localhost:4200",
+                                                    "http://localhost:3000",
+                                                    "http://localhost:80", // nginx server
+                                                    "http://localhost", // allows every HTTP-Request from all ports from localhost
+                                                    "https://localhost",
+                                                    "http://192.168.0.102",
+                                                    "https://192.168.0.102",
+                                                    "http://185.43.5.52",
+                                                    "https://185.43.5.52",
+                                                    "http://timofeimen.fvds.ru",
+                                                    "https://timofeimen.fvds.ru"));
+        corsConfiguration.setAllowedHeaders(Arrays.asList("Origin",
+                                                          "Access-Control-Allow-Origin",
+                                                          "Content-Type",
+                                                          "Accept",
+                                                          "Jwt-Token",
+                                                          "Authorization",
+                                                          "Origin",
+                                                          "Accept",
+                                                          "X-Requested-With",
+                                                          "Access-Control-Request-Method",
+                                                          "Access-Control-Request-Headers"));
+        corsConfiguration.setExposedHeaders(Arrays.asList("Origin",
+                                                          "Content-Type",
+                                                          "Accept",
+                                                          "Jwt-Token",
+                                                          "Authorization",
+                                                          "Access-Control-Allow-Origin",
+                                                          "Access-Control-Allow-Origin",
+                                                          "Access-Control-Allow-Credentials",
+                                                          "File-Name"));
+        corsConfiguration.setAllowedMethods(Arrays.asList("GET",
+                                                          "POST",
+                                                          "PUT",
+                                                          "PATCH",
+                                                          "DELETE",
+                                                          "OPTIONS"));
+        urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
+        return new CorsFilter(urlBasedCorsConfigurationSource);
+    }
+    //? Spring Security --^
 
 }
