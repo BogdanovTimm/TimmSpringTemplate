@@ -1,7 +1,8 @@
 services:
+    #! Order matters
     mysql_docker:
         image: mysql:8.1
-        environment:
+        environment: #? This variables will replace analogous variables in application.yaml
             DATABASE_HOST: docker-mysql
             DATABASE_PORT: 3306
             MYSQL_ROOT_PASSWORD: root
@@ -12,7 +13,7 @@ services:
         image: bogdanovtimm/hibernatetest2:1.0.0
         ports: 
             - 80:80
-        environment: #? This variable will replaced analogous variables in application.yaml
+        environment: #? This variables will replace analogous variables in application.yaml
             SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/hibernate_test
             SPRING_DATASOURCE_USERNAME: admin
             SPRING_DATASOURCE_PASSWORD: root
