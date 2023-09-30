@@ -19,9 +19,6 @@ public class Hibernatetest2Application {
 
     public static void main(String[] args) {
         var application = SpringApplication.run(Hibernatetest2Application.class, args);
-        var masterTable = application.getBean("masterTableRepository", MasterTableRepository.class);
-        var rowFromMasterTable = masterTable.findById(1L);
-        System.out.println(rowFromMasterTable.get().getMySlaveTable());
         
     }
 

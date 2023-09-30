@@ -1,7 +1,5 @@
 package com.example.hibernatetest2.security.entities;
 
-import org.springframework.security.core.GrantedAuthority;
-
 /**
  * Enum that represents existing user's roles
  */

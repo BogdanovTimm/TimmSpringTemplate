@@ -1,15 +1,21 @@
 services:
-    app:
-        image: 
-        ports: 80:80
-        depends_on:
-            - db
-    db:
-        image: mysql:latest
+    mysql_docker:
+        image: mysql:8.1
         environment:
             DATABASE_HOST: docker-mysql
             DATABASE_PORT: 3306
             MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: hibernate_test
-            MYSQL_USER: test
-            MYSQL_PASSWORD: test123!
+            MYSQL_USER: admin
+            MYSQL_PASSWORD: root
+    backend_docker:
+        image: bogdanovtimm/hibernatetest2:1.0.0
+        ports: 
+            - 80:80
+        environment: #? This variable will replaced analogous variables in application.yaml
+            SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/hibernate_test
+            SPRING_DATASOURCE_USERNAME: admin
+            SPRING_DATASOURCE_PASSWORD: root
+        depends_on:
+            - db
+    
