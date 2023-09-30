@@ -16,7 +16,7 @@ import com.querydsl.core.types.Predicate;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class Table1RepositoryIT extends IntegrationTestBase { //[ ] Don't forget to extend IntegrationTestBase
+class Table1RepositoryIT extends IntegrationTestBase { //[ ] Don't forget to extend IntegrationTestBase
 
     //! Don't forget to run Docker on the PC when you do integration tests
 

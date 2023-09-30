@@ -12,7 +12,7 @@ import com.example.hibernatetest2.util.IntegrationTestBase;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class Table1ServiceIT extends IntegrationTestBase {
+class Table1ServiceIT extends IntegrationTestBase {
 
     //! Don't forget to run Docker on the PC when you do integration tests
 

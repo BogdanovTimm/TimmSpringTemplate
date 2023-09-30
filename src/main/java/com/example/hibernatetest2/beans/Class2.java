@@ -6,5 +6,5 @@ import lombok.Data;
 public class Class2 {
 
     private ClassBean classBean;
-    
+
 }

@@ -7,7 +7,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import com.example.hibernatetest2.security.entities.RoleType;
 import com.example.hibernatetest2.tables.onetomany.entities.Table1;
 import com.example.hibernatetest2.util.IntegrationTestBase;
 
@@ -15,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 
 @AutoConfigureMockMvc
 @RequiredArgsConstructor
-public class Table1ResourceIT extends IntegrationTestBase {
+class Table1ResourceIT extends IntegrationTestBase {
 
     /**
      * Special mock for Resouce

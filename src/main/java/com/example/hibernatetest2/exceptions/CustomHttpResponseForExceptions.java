@@ -11,10 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
-// import org.springframework.security.authentication.BadCredentialsException;
-// import org.springframework.security.authentication.DisabledException;
-// import org.springframework.security.authentication.LockedException;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,14 +19,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.auth0.jwt.exceptions.JWTDecodeException;
 
-import java.net.http.HttpResponse;
 import java.nio.file.AccessDeniedException;
 import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static java.time.LocalDateTime.now;
-import static org.springframework.http.HttpStatus.*;
 
 /**
  * Custom Exception Handler for everything

@@ -11,20 +11,18 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import lombok.extern.slf4j.Slf4j;
+import com.example.hibernatetest2.tables.onetoone.repositories.MasterTableRepository;
 
 
-@Slf4j
 @SpringBootApplication
 public class Hibernatetest2Application {
 
     public static void main(String[] args) {
         var application = SpringApplication.run(Hibernatetest2Application.class, args);
-        /* var table1 = application.getBean("table1Repository", Table1Repository.class);
-        var table2 = application.getBean("table2Repository", Table2Repository.class);
-        //var table5 = application.getBean("table5Repository", Table5Repository.class);
-        var table1Custom = application.getBean("table1RepositoryCustomQueryDslImpl",
-                                               Table1RepositoryCustomQueryDslImpl.class); */
+        var masterTable = application.getBean("masterTableRepository", MasterTableRepository.class);
+        var rowFromMasterTable = masterTable.findById(1L);
+        System.out.println(rowFromMasterTable.get().getMySlaveTable());
+        
     }
 
     //? Spring Security --v

@@ -21,7 +21,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class Table1Service {
 
     private final Table1Repository table1Repository;

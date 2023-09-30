@@ -1,8 +1,6 @@
 package com.example.hibernatetest2.security.exception;
 
 import java.io.OutputStream;
-import java.time.LocalDateTime;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.BadCredentialsException;

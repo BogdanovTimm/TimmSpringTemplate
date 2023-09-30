@@ -1,0 +1,15 @@
+services:
+    app:
+        image: 
+        ports: 80:80
+        depends_on:
+            - db
+    db:
+        image: mysql:latest
+        environment:
+            DATABASE_HOST: docker-mysql
+            DATABASE_PORT: 3306
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: hibernate_test
+            MYSQL_USER: test
+            MYSQL_PASSWORD: test123!

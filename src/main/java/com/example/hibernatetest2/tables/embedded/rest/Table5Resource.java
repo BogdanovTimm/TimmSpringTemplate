@@ -1,9 +1,9 @@
-package com.example.hibernatetest2.tables.manytoone.rest;
+package com.example.hibernatetest2.tables.embedded.rest;
 
 import java.net.URI;
+
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,28 +15,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.hibernatetest2.security.dto.UserDTO;
-import com.example.hibernatetest2.tables.manytoone.dto.Table2Dto;
-import com.example.hibernatetest2.tables.manytoone.entities.Table2;
-import com.example.hibernatetest2.tables.manytoone.repositories.Table2Repository;
-import com.example.hibernatetest2.tables.manytoone.repositories.Table2RepositoryCustomQueryDslImpl;
-import com.example.hibernatetest2.tables.manytoone.service.Table2Service;
+import com.example.hibernatetest2.tables.embedded.dto.Table5Dto;
+import com.example.hibernatetest2.tables.embedded.entities.Table5;
+import com.example.hibernatetest2.tables.embedded.service.Table5Service;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping(path = "/api/v1/table2") // [ ] URL for this table
+@RequestMapping(path = "/api/v1/embeddable") // [ ] URL for this table
 @RequiredArgsConstructor
-public class Table2Resource {
+public class Table5Resource {
 
-    private final Table2Service table2Service;
+    private final Table5Service table2Service;
 
 
 
     @GetMapping
-    public ResponseEntity<Page<Table2Dto>> search(
+    public ResponseEntity<Page<Table5Dto>> search(
                                                   @RequestParam(defaultValue = "0") //? this variable will be in the URL itself after ? (like http://website.com/bands?pageNumber=1)
                                                   Integer pageNumber,
                                                   @RequestParam(defaultValue = "2")
@@ -53,17 +50,17 @@ public class Table2Resource {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Table2Dto> findById(
+    public ResponseEntity<Table5Dto> findById(
                                               @PathVariable
                                               String id) {
         return ResponseEntity.ok().body(table2Service.findById(Long.parseLong(id)));
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Table2Dto> createNewRow(
+    public ResponseEntity<Table5Dto> createNewRow(
                                                   @RequestBody
                                                   @Valid
-                                                  Table2 creatingForm) {
+                                                  Table5 creatingForm) {
         return ResponseEntity.created(URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
                                                                             .path("/api/v1/table2/<name>")
                                                                             .toUriString()))
@@ -71,7 +68,7 @@ public class Table2Resource {
     }
 
     @PutMapping("/change/{id}")
-    public ResponseEntity<Table2Dto> changeRow(
+    public ResponseEntity<Table5Dto> changeRow(
                                                @RequestBody
                                                String newName,
                                                @PathVariable

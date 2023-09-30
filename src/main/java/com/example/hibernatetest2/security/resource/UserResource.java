@@ -86,9 +86,10 @@ public class UserResource {
      */
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(
-                                                     @RequestBody
-                                                     @Valid
-                                                     LoginForm loginForm) {
+                                                     /*@RequestBody
+                                                       @Valid
+                                                       LoginForm loginForm */
+                                                     @ModelAttribute LoginForm loginForm) { //? Gets vlues from HTTP-form
         UserDTO user = authenticate(loginForm.getEmail(),
                                     loginForm.getPassword());
         return user.isUsingMfa() ?// 
@@ -172,9 +173,9 @@ public class UserResource {
      */
     @GetMapping("/verify/code/{email}/{code}")
     public ResponseEntity<Map<String, Object>> verifyCode(
-                                                          @PathVariable("email")
+                                                          @PathVariable
                                                           String email,
-                                                          @PathVariable("code")
+                                                          @PathVariable
                                                           String code) {
         UserDTO user = userService.verifyCode(email, code);
         publisher.publishEvent(new NewUserEvent(user.getEmail(), EventType.LOGIN_ATTEMPT_SUCCESS));
@@ -202,7 +203,7 @@ public class UserResource {
      * <li>Asks ResponseEntity to create and return JSON variables and their values back to user as HTTP-Response
      */
     @GetMapping("/resetpassword/{email}")
-    public ResponseEntity<String> resetPassword(@PathVariable("email")
+    public ResponseEntity<String> resetPassword(@PathVariable
     String email) {
         userService.resetPassword(email);
         return ResponseEntity.ok()
@@ -221,7 +222,7 @@ public class UserResource {
      */
     @GetMapping("/verify/account/{key}")
     public ResponseEntity<String> verifyAccount(
-                                                @PathVariable("key")
+                                                @PathVariable
                                                 String key) throws InterruptedException {
         return ResponseEntity.ok()
                              .body(userService.verifyAccountKey(key).isEnabled() ? "Account already verified" : "Account verified");
@@ -240,7 +241,7 @@ public class UserResource {
      */
     @GetMapping("/verify/password/{key}")
     public ResponseEntity<String> verifyPasswordUrl(
-                                                    @PathVariable("key")
+                                                    @PathVariable
                                                     String key) throws InterruptedException {
         UserDTO user = userService.verifyPasswordKey(key);
         return ResponseEntity.ok()
@@ -301,7 +302,7 @@ public class UserResource {
 
     @PatchMapping("/update/role/{roleName}")
     public ResponseEntity<Map<String, Object>> updateUserRole(Authentication authentication,
-                                                              @PathVariable("roleName")
+                                                              @PathVariable
                                                               String roleName) {
         UserDTO userDTO = UserUtils.getAuthenticatedUser(authentication);
         userService.updateUserRole(userDTO.getId(), roleName);
@@ -353,7 +354,7 @@ public class UserResource {
 
     @PatchMapping("/update/image")
     public ResponseEntity<Map<String, Object>> updateProfileImage(Authentication authentication,
-                                                                  @RequestParam("image")
+                                                                  @RequestParam
                                                                   MultipartFile image) throws InterruptedException {
         UserDTO user = UserUtils.getAuthenticatedUser(authentication);
         userService.updateImage(user, image);
@@ -370,7 +371,7 @@ public class UserResource {
     @GetMapping(value = "/image/{fileName}",
                 produces = IMAGE_PNG_VALUE)
     public byte[] getProfileImage(
-                                  @PathVariable("fileName")
+                                  @PathVariable
                                   String fileName) throws Exception {
         return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/Downloads/images/" + fileName));
     }

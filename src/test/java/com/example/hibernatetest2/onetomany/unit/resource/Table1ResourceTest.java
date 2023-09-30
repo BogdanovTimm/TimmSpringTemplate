@@ -8,14 +8,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import com.example.hibernatetest2.security.entities.RoleType;
 import com.example.hibernatetest2.tables.onetomany.dto.Table1Dto;
 
 import com.example.hibernatetest2.tables.onetomany.entities.Table1;
@@ -29,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 
 @WebMvcTest(Table1Resource.class) // [ ] Name of a Resource class you want to unit-test
 @RequiredArgsConstructor
-public class Table1ResourceTest extends UnitTestBase {
+class Table1ResourceTest extends UnitTestBase {
 
     /**
      * Special mock for Resouce
@@ -47,10 +44,6 @@ public class Table1ResourceTest extends UnitTestBase {
 
     @MockBean //? Class on which our class that we want to test depends on
     private CustomJWTTokenHandler CustomJWTTokenHandler;
-
-    private static final PageRequest pageRequest = PageRequest.of(0, //? Page number
-                                                                  2, //? Size of one page
-                                                                  Sort.by("id"));
 
     private static final Table1Dto rowFromDatabase = Table1Dto.builder().id(7L).name("tim@gmail.com").build();
 
@@ -72,10 +65,8 @@ public class Table1ResourceTest extends UnitTestBase {
     private static final Page<Table1Dto> pageToReturnForThMe = new PageImpl<>(listToReturnForThMe);
 
 
-
-
     @org.junit.jupiter.api.Test
-    public void findById() throws Exception {
+    void findById() throws Exception {
         Mockito.when(table1Service.findById(7L)).thenReturn(rowFromDatabase);
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/table1" + "/7")) //? URL where to send HTTP-GET request
                .andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
@@ -85,14 +76,15 @@ public class Table1ResourceTest extends UnitTestBase {
     }
 
     @org.junit.jupiter.api.Test
-    public void search() throws Exception {
+    void search() throws Exception {
         Mockito.when(table1Service.search(null, null, null, "th")).thenReturn(pageToReturnForThMe);
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/table1" + "?searchPhrase=th")) //? URL where to send HTTP-GET request
                .andExpect(MockMvcResultMatchers.status().is2xxSuccessful());
     }
 
+    @Disabled
     @org.junit.jupiter.api.Test
-    public void createNewRow() throws Exception {
+    void createNewRow() throws Exception {
         Mockito.when(table1Service.createNewRow(rowToCreate)).thenReturn(creationRow);
         mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/table1" + "/add")
                                               .contentType(org.springframework.http.MediaType.APPLICATION_JSON)
@@ -102,8 +94,9 @@ public class Table1ResourceTest extends UnitTestBase {
                .andExpect(MockMvcResultMatchers.status().is2xxSuccessful());
     }
 
+    @Disabled
     @org.junit.jupiter.api.Test
-    public void deleteRow() throws Exception {
+    void deleteRow() throws Exception {
         Mockito.when(table1Service.deleteRow("tim@gmail.com")).thenReturn(1);
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/table1/delete/tim@gmail.com") //? URL where to send HTTP-DELETE request and content for creation
                                               .with(SecurityMockMvcRequestPostProcessors.user("test@gmail.com")

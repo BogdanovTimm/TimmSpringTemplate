@@ -28,10 +28,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.example.hibernatetest2.security.exception.CustomAccessDeniedHandler;
 import com.example.hibernatetest2.security.exception.CustomAuthenticationEntryPoint;
 import com.example.hibernatetest2.security.filter.CustomAuthorizationFilter;
-import com.example.hibernatetest2.security.repository.UserRepository;
 import com.example.hibernatetest2.security.repository.UserRepositoryImpl;
-import com.example.hibernatetest2.security.service.UserService;
-
 import lombok.RequiredArgsConstructor;
 
 @Configuration

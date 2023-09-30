@@ -36,8 +36,8 @@ public class EmailServiceImpl implements EmailService {
                                             verificationUrl,
                                             verificationType));
             log.info("4");
-            message.setSubject(String.format("SecureCapita - %s Verification Email",
-                                             StringUtils.capitalize(verificationType.getType())));
+            message.setSubject("SecureCapita - %s Verification Email".formatted(
+                    StringUtils.capitalize(verificationType.getType())));
             log.info("5");
             mailSender.send(message);
             log.info("Email sent to {}", firstName);

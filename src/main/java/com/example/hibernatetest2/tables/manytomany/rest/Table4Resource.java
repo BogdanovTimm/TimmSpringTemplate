@@ -50,7 +50,7 @@ public class Table4Resource {
 
     @GetMapping("/{id}")
     public ResponseEntity<Table4Dto> findById(
-                                              @PathVariable("id")
+                                              @PathVariable
                                               String id) {
         return ResponseEntity.ok().body(table2Service.findById(Long.parseLong(id)));
     }
@@ -70,7 +70,7 @@ public class Table4Resource {
     public ResponseEntity<Table4Dto> changeRow(
                                                @RequestBody
                                                String newName,
-                                               @PathVariable("id")
+                                               @PathVariable
                                                String id) {
         return ResponseEntity.ok().body(table2Service.changeRow(newName, Long.parseLong(id)));
     }

@@ -27,7 +27,7 @@ import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Predicate;
 
 @ExtendWith(MockitoExtension.class)
-public class Table1ServiceTest extends UnitTestBase {
+class Table1ServiceTest extends UnitTestBase {
 
     @Mock //? Every class that we don't want to test must has this annotation
     private Table1Repository table1Repository;
@@ -90,12 +90,9 @@ public class Table1ServiceTest extends UnitTestBase {
                                                                                                       .build()));
 
 
-
-
-
     @org.junit.jupiter.api.Test
     @MockitoSettings(strictness = Strictness.LENIENT)
-    public void search() {
+    void search() {
         Mockito.when(table1Repository.findAll(predicate, pageRequest)).thenReturn(pageToReturnForThMe);
         Mockito.when(table1Mapper.table1ToDto(rowFromTable1)).thenReturn(rowFromTable1Dto);
         Mockito.when(table1Mapper.table1ToDto(row2FromTable1)).thenReturn(row2FromTable1Dto);
@@ -104,9 +101,8 @@ public class Table1ServiceTest extends UnitTestBase {
     }
 
 
-
     @org.junit.jupiter.api.Test
-    public void findById() {
+    void findById() {
         Mockito.when(table1Repository.findById(7L)).thenReturn(optionalRowFromDatabase);
         Mockito.when(table1Mapper.table1ToDto(optionalRowFromDatabase.get())).thenReturn(dto);
         var resultToTest = table1Service.findById(7L);
@@ -116,9 +112,8 @@ public class Table1ServiceTest extends UnitTestBase {
     }
 
 
-
     @org.junit.jupiter.api.Test
-    public void createNewRow() {
+    void createNewRow() {
         Mockito.when(table1Repository.saveAndFlush(rowFromDatabase)).thenReturn(rowFromDatabase);
         Mockito.when(table1Mapper.table1ToDto(rowFromDatabase)).thenReturn(dto);
         var resultToTest = table1Service.createNewRow(rowFromDatabase);
@@ -128,9 +123,8 @@ public class Table1ServiceTest extends UnitTestBase {
     }
 
 
-
     @org.junit.jupiter.api.Test
-    public void changeRow() {
+    void changeRow() {
         Mockito.when(table1Repository.findById(7L)).thenReturn(optionalRowFromDatabase);
         Mockito.when(table1Repository.saveAndFlush(newRowFromDatabase)).thenReturn(newRowFromDatabase);
         Mockito.when(table1Mapper.table1ToDto(newRowFromDatabase)).thenReturn(newDto);
@@ -141,9 +135,8 @@ public class Table1ServiceTest extends UnitTestBase {
     }
 
 
-
     @org.junit.jupiter.api.Test
-    public void deleteRow() {
+    void deleteRow() {
         Mockito.when(table1Repository.deleteByName("tim@gmail.com")).thenReturn(1);
         var resultToTest = table1Service.deleteRow("tim@gmail.com");
         Assertions.assertThat(resultToTest).isNotNull();

@@ -24,8 +24,6 @@ public class Table1RepositoryCustomQueryDslImpl implements Table1RepositoryCusto
 
 
 
-
-
     @Override
     public List<Table1> findAllByFilter(Pageable givenPageRequest, Predicate predicate) {
         return new JPAQuery<Table1>(entityManager).select(QTable1.table1)

@@ -19,9 +19,8 @@ import com.example.hibernatetest2.tables.onetomany.entities.Table1;
 import com.example.hibernatetest2.tables.onetomany.service.Table1Service;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+
 @RestController
 @RequestMapping(path = "/api/v1/table1") // [ ] URL for this table
 @RequiredArgsConstructor
@@ -50,7 +49,7 @@ public class Table1Resource {
 
     @GetMapping("/{id}")
     public ResponseEntity<Table1Dto> findById(
-                                              @PathVariable("id")
+                                              @PathVariable
                                               String id) {
         return ResponseEntity.ok().body(table1Service.findById(Long.parseLong(id)));
     }
@@ -70,7 +69,7 @@ public class Table1Resource {
     public ResponseEntity<Table1Dto> changeRow(
                                                @RequestBody
                                                String newName,
-                                               @PathVariable("id")
+                                               @PathVariable
                                                String id) {
         return ResponseEntity.ok().body(table1Service.changeRow(newName, Long.parseLong(id)));
     }

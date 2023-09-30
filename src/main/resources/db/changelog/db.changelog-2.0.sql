@@ -34,7 +34,7 @@ VALUES ("Crack the Sky"     , 5        ),
 
 
 --changeset bogdanovtim:3
-INSERT INTO events
+INSERT INTO Events
        (type                     , description                            ) /* Insert nothing into id_column */
        /*------------------------|----------------------------------------*/
 VALUES ("LOGIN_ATTEMPT"          , "You tried to log in"                  ),
@@ -42,7 +42,7 @@ VALUES ("LOGIN_ATTEMPT"          , "You tried to log in"                  ),
        ("LOGIN_ATTEMPT_FAILURE"  , "You tried to login  and you failed"   ),
        ("PROFILE_UPDATE"         , "You updated your profile information" ),
        ("PROFILE_PICTURE_UPDATE" , "You updated your profile picture"     ),
-       ("ROLE_UPDATE Mountain"   , "You updated your role and permissions"),
+       ("ROLE_UPDATE"            , "You updated your role and permissions"),
        ("ACCOUNT_SETTINGS_UPDATE", "You updated your account settings"    ),
        ("MFA_UPDATE"             , "You updated your MFA settings"        ),
        ("PASSWORD_UPDATE"        , "You updated your password"            )
