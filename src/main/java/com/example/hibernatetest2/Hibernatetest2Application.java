@@ -13,22 +13,19 @@ import org.springframework.web.filter.CorsFilter;
 
 import com.example.hibernatetest2.tables.onetoone.repositories.MasterTableRepository;
 
-
 @SpringBootApplication
 public class Hibernatetest2Application {
 
     public static void main(String[] args) {
         var application = SpringApplication.run(Hibernatetest2Application.class, args);
-        
+
     }
 
-    //? Spring Security --v
+    // ? Spring Security --v
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(12);
     }
-
-
 
     /**
      * Sets:
@@ -81,6 +78,6 @@ public class Hibernatetest2Application {
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
         return new CorsFilter(urlBasedCorsConfigurationSource);
     }
-    //? Spring Security --^
+    // ? Spring Security --^
 
 }

@@ -1,28 +1,25 @@
 package com.example.hibernatetest2.tables.manytoone.repositories;
 
-import java.util.List;
-
-import org.springframework.data.domain.Pageable;
-
 import com.example.hibernatetest2.tables.manytoone.entities.QTable2;
 import com.example.hibernatetest2.tables.manytoone.entities.Table2;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQuery;
-
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 /**
- * Custom QueryDsl Functions implemnetntation
+ Custom QueryDsl Functions implemnetntation
  */
 @Slf4j
 @RequiredArgsConstructor
-public class Table2RepositoryCustomQueryDslImpl implements Table2RepositoryCustomQueryDsl {
+public class Table2RepositoryCustomQueryDslImpl
+        implements Table2RepositoryCustomQueryDsl {
 
     private final EntityManager entityManager;
-
-
 
 
 
@@ -33,5 +30,4 @@ public class Table2RepositoryCustomQueryDslImpl implements Table2RepositoryCusto
                                                   .where(predicate)
                                                   .fetch();
     }
-
 }
